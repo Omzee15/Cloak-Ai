@@ -1,0 +1,21 @@
+{
+  "name": "cloak-app",
+  "version": "1.0.0",
+  "description": "Screen-sharing invisible AI assistant",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "keywords": [
+    "electron",
+    "ai",
+    "screen-sharing"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "electron": "^39.2.7"
+  }
+}
