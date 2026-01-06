@@ -17,27 +17,185 @@
             color: #c9d1d9;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             overflow: hidden;
         }
 
-        #header {
-            background: #2d2d2d;
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #3d3d3d;
+        /* Sidebar */
+        #sidebar {
+            width: 220px;
+            background: #0d1117;
+            border-right: 1px solid #3d3d3d;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
         }
 
-        #header h1 {
-            font-size: 18px;
+        #app-title {
+            font-size: 20px;
             font-weight: bold;
             color: #ffffff;
-            margin-bottom: 4px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #app-title .icon {
+            display: block;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .mode-section {
+            margin-bottom: 20px;
+        }
+
+        .mode-label {
+            font-size: 11px;
+            color: #8b949e;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .mode-option {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #1e1e1e;
+            border: 2px solid #3d3d3d;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mode-option:hover {
+            border-color: #58a6ff;
+            background: #21262d;
+        }
+
+        .mode-option.active {
+            border-color: #58a6ff;
+            background: #1f2937;
+        }
+
+        .mode-icon {
+            font-size: 18px;
+        }
+
+        .mode-text {
+            flex: 1;
+        }
+
+        .mode-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .mode-desc {
+            font-size: 10px;
+            color: #8b949e;
+        }
+
+        .settings-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #3d3d3d;
+        }
+
+        .settings-label {
+            font-size: 11px;
+            color: #8b949e;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .toggle-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background: #1e1e1e;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .toggle-label {
+            font-size: 12px;
+            color: #c9d1d9;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            background: #3d3d3d;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle-switch.active {
+            background: #58a6ff;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.2s;
+        }
+
+        .toggle-switch.active::after {
+            left: 22px;
+        }
+
+        #status-section {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #3d3d3d;
         }
 
         #status {
             font-size: 10px;
             color: #4ade80;
+            text-align: center;
+        }
+
+        /* Main Content */
+        #main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #1e1e1e;
+        }
+
+        #header {
+            background: #2d2d2d;
+            padding: 12px 20px;
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        #header h1 {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        #mode-status {
+            font-size: 10px;
+            color: #8b949e;
         }
 
         #chat-container {
@@ -98,7 +256,8 @@
             word-wrap: break-word;
         }
 
-        #input-area {
+        /* Gemini Input Area */
+        #gemini-input-area {
             padding: 15px;
             background: #1e1e1e;
             border-top: 1px solid #3d3d3d;
@@ -146,7 +305,70 @@
             cursor: not-allowed;
         }
 
-        #hint {
+        /* Vapi Control Area */
+        #vapi-control-area {
+            padding: 20px;
+            background: #1e1e1e;
+            border-top: 1px solid #3d3d3d;
+            display: none;
+        }
+
+        #vapi-control-area.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #start-interview-btn {
+            padding: 16px 32px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #start-interview-btn:hover:not(:disabled) {
+            background: #1d4ed8;
+            transform: scale(1.02);
+        }
+
+        #start-interview-btn:disabled {
+            background: #484f58;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        #start-interview-btn.active {
+            background: #dc2626;
+        }
+
+        #start-interview-btn.active:hover {
+            background: #b91c1c;
+        }
+
+        #vapi-status {
+            font-size: 12px;
+            color: #8b949e;
+            text-align: center;
+        }
+
+        #vapi-status.connected {
+            color: #4ade80;
+        }
+
+        #vapi-status.error {
+            color: #f87171;
+        }
+
+        .hint {
             text-align: center;
             font-size: 9px;
             color: #8b949e;
@@ -169,20 +391,154 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #4d4d4d;
         }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Header Controls */
+        #header-controls {
+            display: flex;
+        }
+
+        .control-btn {
+            background: #0d1117;
+            border: 1px solid #3d3d3d;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #c9d1d9;
+        }
+
+        .control-btn:hover {
+            background: #21262d;
+            border-color: #58a6ff;
+        }
+
+        .control-btn.muted {
+            background: #dc2626;
+            border-color: #dc2626;
+        }
+
+        .interview-btn-header {
+            background: #2563eb;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+        }
+
+        .interview-btn-header:hover:not(:disabled) {
+            background: #1d4ed8;
+        }
+
+        .interview-btn-header:disabled {
+            background: #484f58;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .interview-btn-header.active {
+            background: #dc2626;
+        }
+
+        .interview-btn-header.active:hover {
+            background: #b91c1c;
+        }
+
+        #vapi-status-header {
+            font-size: 10px;
+            color: #8b949e;
+            min-width: 60px;
+        }
+
+        #vapi-status-header.connected {
+            color: #4ade80;
+        }
+
+        #vapi-status-header.error {
+            color: #f87171;
+        }
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1>🔒 Cloak AI</h1>
-        <div id="status">🟢 Screen-Share Invisible</div>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div id="app-title">
+            <span class="icon">🔒</span>
+            Cloak AI
+        </div>
+
+        <div class="mode-section">
+            <div class="mode-label">Choose Mode</div>
+            
+            <div class="mode-option active" data-mode="gemini">
+                <span class="mode-icon">💬</span>
+                <div class="mode-text">
+                    <div class="mode-name">Gemini Chat</div>
+                    <div class="mode-desc">Text-based AI chat</div>
+                </div>
+            </div>
+
+            <div class="mode-option" data-mode="vapi">
+                <span class="mode-icon">🎙️</span>
+                <div class="mode-text">
+                    <div class="mode-name">Vapi Interview</div>
+                    <div class="mode-desc">Voice AI interview</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="status-section">
+            <div id="status">🟢 Screen-Share Invisible</div>
+        </div>
     </div>
 
-    <div id="chat-container"></div>
+    <!-- Main Content -->
+    <div id="main-content">
+        <div id="header">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 id="header-title">Gemini Chat</h1>
+                    <div id="mode-status">AI-powered text conversation</div>
+                </div>
+                <div id="header-controls" style="display: none; gap: 8px; align-items: center;">
+                    <!-- Audio Controls -->
+                    <button id="mute-speaker-btn" class="control-btn" title="Toggle Speaker">
+                        <span id="speaker-icon">🔊</span>
+                    </button>
+                    <button id="mute-mic-btn" class="control-btn" title="Toggle Microphone">
+                        <span id="mic-icon">🎤</span>
+                    </button>
+                    <!-- Start Interview Button -->
+                    <button id="start-interview-btn-header" class="interview-btn-header">
+                        <span id="interview-icon-header">🎙️</span>
+                        <span id="interview-text-header">Start</span>
+                    </button>
+                    <div id="vapi-status-header">Ready</div>
+                </div>
+            </div>
+        </div>
 
-    <div id="input-area">
-        <textarea id="input-text" placeholder="Type your message..."></textarea>
-        <button id="send-btn">Send Message</button>
-        <div id="hint">Press Ctrl+Enter to send • Cmd+Q to quit</div>
+        <div id="chat-container"></div>
+
+        <!-- Gemini Input -->
+        <div id="gemini-input-area">
+            <textarea id="input-text" placeholder="Type your message..."></textarea>
+            <button id="send-btn">Send Message</button>
+            <div class="hint">Press Ctrl+Enter to send</div>
+        </div>
+
+        <!-- Vapi Controls (now in header) -->
     </div>
 
     <script src="renderer.js"></script>
